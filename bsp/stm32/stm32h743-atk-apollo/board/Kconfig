@@ -3,6 +3,8 @@ menu "Hardware Drivers Config"
 config SOC_STM32H743II
     bool
     select SOC_SERIES_STM32H7
+    select RT_USING_COMPONENTS_INIT
+    select RT_USING_USER_MAIN
     default y
 
 menu "Onboard Peripheral Drivers"
@@ -62,6 +64,14 @@ menu "On-chip Peripheral Drivers"
                     bool "RTC USING LSI"
             endchoice
         endif
+
+    config BSP_USING_WDT
+        bool "Enable Watchdog Timer"
+        select RT_USING_WDT
+        default n
+
+	
+    source "../libraries/HAL_Drivers/Kconfig"
 
 endmenu
 
